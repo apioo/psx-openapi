@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('Describes a single operation parameter.  A unique parameter is defined by a combination of a name and location.')]
-#[Required(array('name', 'in'))]
 class Parameter implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $name = null;

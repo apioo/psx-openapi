@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('Describes a single response from an API Operation, including design-time, static  `links` to operations based on the response.')]
-#[Required(array('description'))]
 class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $description = null;

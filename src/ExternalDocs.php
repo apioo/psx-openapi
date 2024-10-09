@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('Allows referencing an external resource for extended documentation.')]
-#[Required(array('url'))]
 class ExternalDocs implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $description = null;

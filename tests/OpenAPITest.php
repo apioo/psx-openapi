@@ -46,6 +46,8 @@ use PSX\OpenAPI\SecuritySchemes;
 use PSX\OpenAPI\Server;
 use PSX\OpenAPI\Tag;
 use PSX\Record\Record;
+use PSX\Schema\ObjectMapper;
+use PSX\Schema\SchemaManager;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -57,7 +59,7 @@ use Symfony\Component\Yaml\Yaml;
  */
 class OpenAPITest extends TestCase
 {
-    public function testModel()
+    public function testModel(): void
     {
         $license = new License();
         $license->setName('MIT');
@@ -239,7 +241,7 @@ class OpenAPITest extends TestCase
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
 
-    public function testModelSimple()
+    public function testModelSimple(): void
     {
         $info = new Info();
         $info->setVersion('1.0.0');
@@ -307,7 +309,7 @@ class OpenAPITest extends TestCase
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
 
-    public function testSecurity()
+    public function testSecurity(): void
     {
         $scopes = new Scopes();
         $scopes['foo'] = 'Foo scope';
@@ -354,5 +356,15 @@ class OpenAPITest extends TestCase
         $expect = file_get_contents(__DIR__ . '/resources/openapi_security.json');
 
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
+    }
+
+    public function testParse(): void
+    {
+        $mapper = new ObjectMapper(new SchemaManager());
+
+        $openAPI = $mapper->readJson(file_get_contents(__DIR__ . '/resources/openapi.json'), OpenAPI::class);
+
+        $this->assertInstanceOf(OpenAPI::class, $openAPI);
+        $this->assertEquals('List all pets', $openAPI->getPaths()->get('/pets')->getGet()->getSummary());
     }
 }

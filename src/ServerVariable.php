@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('An object representing a Server Variable for server URL template substitution.')]
-#[Required(array('default'))]
 class ServerVariable implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     /**

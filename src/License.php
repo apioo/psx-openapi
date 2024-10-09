@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('License information for the exposed API.')]
-#[Required(array('name'))]
 class License implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $name = null;

@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('An object representing a Server.')]
-#[Required(array('url'))]
 class Server implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $url = null;

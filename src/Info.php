@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('The object provides metadata about the API. The metadata MAY be used by the clients if needed, and MAY be presented in editing or documentation generation tools for convenience.')]
-#[Required(array('title', 'version'))]
 class Info implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $title = null;

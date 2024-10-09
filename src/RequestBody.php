@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('Describes a single request body.')]
-#[Required(array('content'))]
 class RequestBody implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $description = null;

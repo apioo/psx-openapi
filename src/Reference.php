@@ -9,7 +9,6 @@ use PSX\Schema\Attribute\Key;
 use PSX\Schema\Attribute\Required;
 
 #[Description('A simple object to allow referencing other components in the specification, internally and externally.  The Reference Object is defined by JSON Reference and follows the same structure, behavior and rules.   For this specification, reference resolution is accomplished as defined by the JSON Reference specification and not by the JSON Schema specification.')]
-#[Required(array('$ref'))]
 class Reference implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     #[Key('$ref')]

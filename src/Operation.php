@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('Describes a single API operation on a path.')]
-#[Required(array('responses'))]
 class Operation implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     /**

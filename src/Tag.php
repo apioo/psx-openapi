@@ -8,7 +8,6 @@ use PSX\Schema\Attribute\Description;
 use PSX\Schema\Attribute\Required;
 
 #[Description('Adds metadata to a single tag that is used by the Operation Object. It is not mandatory to have a Tag Object per tag defined in the Operation Object instances.')]
-#[Required(array('name'))]
 class Tag implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $name = null;
