@@ -48,6 +48,7 @@ use PSX\OpenAPI\Tag;
 use PSX\Record\Record;
 use PSX\Schema\ObjectMapper;
 use PSX\Schema\SchemaManager;
+use PSX\Schema\SchemaSource;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -362,7 +363,7 @@ class OpenAPITest extends TestCase
     {
         $mapper = new ObjectMapper(new SchemaManager());
 
-        $openAPI = $mapper->readJson(file_get_contents(__DIR__ . '/resources/openapi.json'), OpenAPI::class);
+        $openAPI = $mapper->readJson(file_get_contents(__DIR__ . '/resources/openapi.json'), SchemaSource::fromClass(OpenAPI::class));
 
         $this->assertInstanceOf(OpenAPI::class, $openAPI);
         $this->assertEquals('List all pets', $openAPI->getPaths()->get('/pets')->getGet()->getSummary());
