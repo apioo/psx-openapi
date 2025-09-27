@@ -9,7 +9,7 @@ use PSX\Schema\Attribute\Description;
 #[Description('This is the root object of the OpenAPI document.')]
 class OpenAPI implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    protected ?string $openapi = null;
+    protected ?string $openapi = '3.0.3';
     protected ?Info $info = null;
     protected ?string $jsonSchemaDialect = null;
     /**
