@@ -14,47 +14,47 @@ class Encoding implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $style = null;
     protected ?bool $explode = null;
     protected ?bool $allowReserved = null;
-    public function setContentType(?string $contentType) : void
+    public function setContentType(?string $contentType): void
     {
         $this->contentType = $contentType;
     }
-    public function getContentType() : ?string
+    public function getContentType(): ?string
     {
         return $this->contentType;
     }
-    public function setHeaders(?Headers $headers) : void
+    public function setHeaders(?Headers $headers): void
     {
         $this->headers = $headers;
     }
-    public function getHeaders() : ?Headers
+    public function getHeaders(): ?Headers
     {
         return $this->headers;
     }
-    public function setStyle(?string $style) : void
+    public function setStyle(?string $style): void
     {
         $this->style = $style;
     }
-    public function getStyle() : ?string
+    public function getStyle(): ?string
     {
         return $this->style;
     }
-    public function setExplode(?bool $explode) : void
+    public function setExplode(?bool $explode): void
     {
         $this->explode = $explode;
     }
-    public function getExplode() : ?bool
+    public function getExplode(): ?bool
     {
         return $this->explode;
     }
-    public function setAllowReserved(?bool $allowReserved) : void
+    public function setAllowReserved(?bool $allowReserved): void
     {
         $this->allowReserved = $allowReserved;
     }
-    public function getAllowReserved() : ?bool
+    public function getAllowReserved(): ?bool
     {
         return $this->allowReserved;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -65,7 +65,7 @@ class Encoding implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('allowReserved', $this->allowReserved);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

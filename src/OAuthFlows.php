@@ -11,39 +11,39 @@ class OAuthFlows implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?OAuthFlow $password = null;
     protected ?OAuthFlow $clientCredentials = null;
     protected ?OAuthFlow $authorizationCode = null;
-    public function setImplicit(?OAuthFlow $implicit) : void
+    public function setImplicit(?OAuthFlow $implicit): void
     {
         $this->implicit = $implicit;
     }
-    public function getImplicit() : ?OAuthFlow
+    public function getImplicit(): ?OAuthFlow
     {
         return $this->implicit;
     }
-    public function setPassword(?OAuthFlow $password) : void
+    public function setPassword(?OAuthFlow $password): void
     {
         $this->password = $password;
     }
-    public function getPassword() : ?OAuthFlow
+    public function getPassword(): ?OAuthFlow
     {
         return $this->password;
     }
-    public function setClientCredentials(?OAuthFlow $clientCredentials) : void
+    public function setClientCredentials(?OAuthFlow $clientCredentials): void
     {
         $this->clientCredentials = $clientCredentials;
     }
-    public function getClientCredentials() : ?OAuthFlow
+    public function getClientCredentials(): ?OAuthFlow
     {
         return $this->clientCredentials;
     }
-    public function setAuthorizationCode(?OAuthFlow $authorizationCode) : void
+    public function setAuthorizationCode(?OAuthFlow $authorizationCode): void
     {
         $this->authorizationCode = $authorizationCode;
     }
-    public function getAuthorizationCode() : ?OAuthFlow
+    public function getAuthorizationCode(): ?OAuthFlow
     {
         return $this->authorizationCode;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -53,7 +53,7 @@ class OAuthFlows implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('authorizationCode', $this->authorizationCode);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

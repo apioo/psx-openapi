@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
-use PSX\Schema\Attribute\Required;
 
 #[Description('Describes a single operation parameter.  A unique parameter is defined by a combination of a name and location.')]
 class Parameter implements \JsonSerializable, \PSX\Record\RecordableInterface
@@ -23,111 +22,111 @@ class Parameter implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected mixed $example = null;
     protected ?Examples $examples = null;
     protected ?MediaTypes $content = null;
-    public function setName(?string $name) : void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
-    public function getName() : ?string
+    public function getName(): ?string
     {
         return $this->name;
     }
-    public function setIn(?string $in) : void
+    public function setIn(?string $in): void
     {
         $this->in = $in;
     }
-    public function getIn() : ?string
+    public function getIn(): ?string
     {
         return $this->in;
     }
-    public function setDescription(?string $description) : void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
-    public function setRequired(?bool $required) : void
+    public function setRequired(?bool $required): void
     {
         $this->required = $required;
     }
-    public function getRequired() : ?bool
+    public function getRequired(): ?bool
     {
         return $this->required;
     }
-    public function setDeprecated(?bool $deprecated) : void
+    public function setDeprecated(?bool $deprecated): void
     {
         $this->deprecated = $deprecated;
     }
-    public function getDeprecated() : ?bool
+    public function getDeprecated(): ?bool
     {
         return $this->deprecated;
     }
-    public function setAllowEmptyValue(?bool $allowEmptyValue) : void
+    public function setAllowEmptyValue(?bool $allowEmptyValue): void
     {
         $this->allowEmptyValue = $allowEmptyValue;
     }
-    public function getAllowEmptyValue() : ?bool
+    public function getAllowEmptyValue(): ?bool
     {
         return $this->allowEmptyValue;
     }
-    public function setStyle(?string $style) : void
+    public function setStyle(?string $style): void
     {
         $this->style = $style;
     }
-    public function getStyle() : ?string
+    public function getStyle(): ?string
     {
         return $this->style;
     }
-    public function setExplode(?bool $explode) : void
+    public function setExplode(?bool $explode): void
     {
         $this->explode = $explode;
     }
-    public function getExplode() : ?bool
+    public function getExplode(): ?bool
     {
         return $this->explode;
     }
-    public function setAllowReserved(?bool $allowReserved) : void
+    public function setAllowReserved(?bool $allowReserved): void
     {
         $this->allowReserved = $allowReserved;
     }
-    public function getAllowReserved() : ?bool
+    public function getAllowReserved(): ?bool
     {
         return $this->allowReserved;
     }
-    public function setSchema(mixed $schema) : void
+    public function setSchema(mixed $schema): void
     {
         $this->schema = $schema;
     }
-    public function getSchema() : mixed
+    public function getSchema(): mixed
     {
         return $this->schema;
     }
-    public function setExample(mixed $example) : void
+    public function setExample(mixed $example): void
     {
         $this->example = $example;
     }
-    public function getExample() : mixed
+    public function getExample(): mixed
     {
         return $this->example;
     }
-    public function setExamples(?Examples $examples) : void
+    public function setExamples(?Examples $examples): void
     {
         $this->examples = $examples;
     }
-    public function getExamples() : ?Examples
+    public function getExamples(): ?Examples
     {
         return $this->examples;
     }
-    public function setContent(?MediaTypes $content) : void
+    public function setContent(?MediaTypes $content): void
     {
         $this->content = $content;
     }
-    public function getContent() : ?MediaTypes
+    public function getContent(): ?MediaTypes
     {
         return $this->content;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -146,7 +145,7 @@ class Parameter implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('content', $this->content);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

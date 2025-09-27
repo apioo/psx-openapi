@@ -1,0 +1,9 @@
+{
+  "type": "model-php",
+  "require": {
+    "./spec/typeschema.json": {
+      "target": "./src",
+      "namespace": "PSX\\OpenAPI"
+    }
+  }
+}

@@ -13,39 +13,39 @@ class Link implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $operationId = null;
     protected ?string $description = null;
     protected ?Server $server = null;
-    public function setOperationRef(?string $operationRef) : void
+    public function setOperationRef(?string $operationRef): void
     {
         $this->operationRef = $operationRef;
     }
-    public function getOperationRef() : ?string
+    public function getOperationRef(): ?string
     {
         return $this->operationRef;
     }
-    public function setOperationId(?string $operationId) : void
+    public function setOperationId(?string $operationId): void
     {
         $this->operationId = $operationId;
     }
-    public function getOperationId() : ?string
+    public function getOperationId(): ?string
     {
         return $this->operationId;
     }
-    public function setDescription(?string $description) : void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
-    public function setServer(?Server $server) : void
+    public function setServer(?Server $server): void
     {
         $this->server = $server;
     }
-    public function getServer() : ?Server
+    public function getServer(): ?Server
     {
         return $this->server;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -55,7 +55,7 @@ class Link implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('server', $this->server);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

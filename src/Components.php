@@ -18,79 +18,79 @@ class Components implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?SecuritySchemes $securitySchemes = null;
     protected ?Links $links = null;
     protected ?Callbacks $callbacks = null;
-    public function setSchemas(?Schemas $schemas) : void
+    public function setSchemas(?Schemas $schemas): void
     {
         $this->schemas = $schemas;
     }
-    public function getSchemas() : ?Schemas
+    public function getSchemas(): ?Schemas
     {
         return $this->schemas;
     }
-    public function setResponses(?Responses $responses) : void
+    public function setResponses(?Responses $responses): void
     {
         $this->responses = $responses;
     }
-    public function getResponses() : ?Responses
+    public function getResponses(): ?Responses
     {
         return $this->responses;
     }
-    public function setParameters(?Parameters $parameters) : void
+    public function setParameters(?Parameters $parameters): void
     {
         $this->parameters = $parameters;
     }
-    public function getParameters() : ?Parameters
+    public function getParameters(): ?Parameters
     {
         return $this->parameters;
     }
-    public function setExamples(?Examples $examples) : void
+    public function setExamples(?Examples $examples): void
     {
         $this->examples = $examples;
     }
-    public function getExamples() : ?Examples
+    public function getExamples(): ?Examples
     {
         return $this->examples;
     }
-    public function setRequestBodies(?RequestBodies $requestBodies) : void
+    public function setRequestBodies(?RequestBodies $requestBodies): void
     {
         $this->requestBodies = $requestBodies;
     }
-    public function getRequestBodies() : ?RequestBodies
+    public function getRequestBodies(): ?RequestBodies
     {
         return $this->requestBodies;
     }
-    public function setHeaders(?Headers $headers) : void
+    public function setHeaders(?Headers $headers): void
     {
         $this->headers = $headers;
     }
-    public function getHeaders() : ?Headers
+    public function getHeaders(): ?Headers
     {
         return $this->headers;
     }
-    public function setSecuritySchemes(?SecuritySchemes $securitySchemes) : void
+    public function setSecuritySchemes(?SecuritySchemes $securitySchemes): void
     {
         $this->securitySchemes = $securitySchemes;
     }
-    public function getSecuritySchemes() : ?SecuritySchemes
+    public function getSecuritySchemes(): ?SecuritySchemes
     {
         return $this->securitySchemes;
     }
-    public function setLinks(?Links $links) : void
+    public function setLinks(?Links $links): void
     {
         $this->links = $links;
     }
-    public function getLinks() : ?Links
+    public function getLinks(): ?Links
     {
         return $this->links;
     }
-    public function setCallbacks(?Callbacks $callbacks) : void
+    public function setCallbacks(?Callbacks $callbacks): void
     {
         $this->callbacks = $callbacks;
     }
-    public function getCallbacks() : ?Callbacks
+    public function getCallbacks(): ?Callbacks
     {
         return $this->callbacks;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -105,7 +105,7 @@ class Components implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('callbacks', $this->callbacks);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }

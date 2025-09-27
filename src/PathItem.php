@@ -30,117 +30,123 @@ class PathItem implements \JsonSerializable, \PSX\Record\RecordableInterface
      * @var array<Parameter>|null
      */
     protected ?array $parameters = null;
-    public function setRef(?string $ref) : void
+    public function setRef(?string $ref): void
     {
         $this->ref = $ref;
     }
-    public function getRef() : ?string
+    public function getRef(): ?string
     {
         return $this->ref;
     }
-    public function setSummary(?string $summary) : void
+    public function setSummary(?string $summary): void
     {
         $this->summary = $summary;
     }
-    public function getSummary() : ?string
+    public function getSummary(): ?string
     {
         return $this->summary;
     }
-    public function setDescription(?string $description) : void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
-    public function setGet(?Operation $get) : void
+    public function setGet(?Operation $get): void
     {
         $this->get = $get;
     }
-    public function getGet() : ?Operation
+    public function getGet(): ?Operation
     {
         return $this->get;
     }
-    public function setPut(?Operation $put) : void
+    public function setPut(?Operation $put): void
     {
         $this->put = $put;
     }
-    public function getPut() : ?Operation
+    public function getPut(): ?Operation
     {
         return $this->put;
     }
-    public function setPost(?Operation $post) : void
+    public function setPost(?Operation $post): void
     {
         $this->post = $post;
     }
-    public function getPost() : ?Operation
+    public function getPost(): ?Operation
     {
         return $this->post;
     }
-    public function setDelete(?Operation $delete) : void
+    public function setDelete(?Operation $delete): void
     {
         $this->delete = $delete;
     }
-    public function getDelete() : ?Operation
+    public function getDelete(): ?Operation
     {
         return $this->delete;
     }
-    public function setOptions(?Operation $options) : void
+    public function setOptions(?Operation $options): void
     {
         $this->options = $options;
     }
-    public function getOptions() : ?Operation
+    public function getOptions(): ?Operation
     {
         return $this->options;
     }
-    public function setHead(?Operation $head) : void
+    public function setHead(?Operation $head): void
     {
         $this->head = $head;
     }
-    public function getHead() : ?Operation
+    public function getHead(): ?Operation
     {
         return $this->head;
     }
-    public function setPatch(?Operation $patch) : void
+    public function setPatch(?Operation $patch): void
     {
         $this->patch = $patch;
     }
-    public function getPatch() : ?Operation
+    public function getPatch(): ?Operation
     {
         return $this->patch;
     }
-    public function setTrace(?Operation $trace) : void
+    public function setTrace(?Operation $trace): void
     {
         $this->trace = $trace;
     }
-    public function getTrace() : ?Operation
+    public function getTrace(): ?Operation
     {
         return $this->trace;
     }
     /**
      * @param array<Server>|null $servers
      */
-    public function setServers(?array $servers) : void
+    public function setServers(?array $servers): void
     {
         $this->servers = $servers;
     }
-    public function getServers() : ?array
+    /**
+     * @return array<Server>|null
+     */
+    public function getServers(): ?array
     {
         return $this->servers;
     }
     /**
      * @param array<Parameter>|null $parameters
      */
-    public function setParameters(?array $parameters) : void
+    public function setParameters(?array $parameters): void
     {
         $this->parameters = $parameters;
     }
-    public function getParameters() : ?array
+    /**
+     * @return array<Parameter>|null
+     */
+    public function getParameters(): ?array
     {
         return $this->parameters;
     }
-    public function toRecord() : \PSX\Record\RecordInterface
+    public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
         $record = new \PSX\Record\Record();
@@ -159,7 +165,7 @@ class PathItem implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('parameters', $this->parameters);
         return $record;
     }
-    public function jsonSerialize() : object
+    public function jsonSerialize(): object
     {
         return (object) $this->toRecord()->getAll();
     }
