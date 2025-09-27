@@ -4,7 +4,7 @@
 ## About
 
 This library contains model classes to generate an OpenAPI specification in a type-safe way. The models are
-automatically generated based on the [TypeSchema](https://typeschema.org/) specification (s. `typeschema.json`). The
+automatically generated based on the [TypeSchema](https://typeschema.org/) specification (s. `./spec/typeschema.json`). The
 following example shows how you can generate an OpenAPI spec:
 
 ```php
