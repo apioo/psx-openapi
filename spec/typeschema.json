@@ -103,6 +103,9 @@
         "description": {
           "type": "string"
         },
+        "value": {
+          "type": "any"
+        },
         "externalValue": {
           "type": "string"
         }
