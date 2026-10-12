@@ -1,26 +1,28 @@
 {
   "definitions": {
     "Callback": {
-      "description": "A map of possible out-of band callbacks related to the parent operation. Each value in the map is a Path Item Object that describes a set of requests that may be initiated by the API provider and the expected responses. The key value used to identify the callback object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.",
+      "description": "A map of possible out-of band callbacks related to the parent operation. Each value in the map is a Path Item Object that describes a set of requests that may be initiated by the API provider and the expected responses. The key value used to identify the Path Item Object is an expression, evaluated at runtime, that identifies a URL to use for the callback operation.  To describe incoming requests from the API provider independent from another API call, use the `webhooks` field.",
       "type": "object",
       "additionalProperties": {
         "$ref": "PathItem"
       }
     },
     "Callbacks": {
+      "description": "A map of possible out-of band callbacks related to the parent operation. The key is a unique identifier for the Callback Object.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Callback"
       }
     },
     "Webhooks": {
+      "description": "The incoming webhooks that MAY be received as part of this API and that the API consumer MAY choose to implement. The key name is a unique string to refer to each webhook, while the (optionally referenced) Path Item Object describes a request that may be initiated by the API provider and the expected responses.",
       "type": "object",
       "additionalProperties": {
         "$ref": "PathItem"
       }
     },
     "Components": {
-      "description": "Holds a set of reusable objects for different aspects of the OAS. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.",
+      "description": "Holds a set of reusable objects for different aspects of the OAS. All objects defined within the Components Object will have no effect on the API unless they are explicitly referenced from outside the Components Object.",
       "type": "object",
       "properties": {
         "schemas": {
@@ -68,7 +70,7 @@
       }
     },
     "Encoding": {
-      "description": "A single encoding definition applied to a single schema property.",
+      "description": "A single encoding definition applied to a single schema property.  Properties are correlated with `multipart` parts using the `name` parameter of `Content-Disposition: form-data`, and with `application/x-www-form-urlencoded` using the query string parameter names. In both cases, their order is implementation-defined.",
       "type": "object",
       "properties": {
         "contentType": {
@@ -89,12 +91,14 @@
       }
     },
     "Encodings": {
+      "description": "A map between a property name and its encoding information. The key, being the property name, MUST exist in the schema as a property.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Encoding"
       }
     },
     "Example": {
+      "description": "An object grouping an internal or external example value with basic `summary` and `description` metadata. This object is typically used in fields named `examples` (plural), and is a referenceable alternative to older `example` (singular) fields that do not support referencing or metadata.  Examples allow demonstration of the usage of properties, parameters and objects within OpenAPI.",
       "type": "object",
       "properties": {
         "summary": {
@@ -124,7 +128,7 @@
       }
     },
     "Header": {
-      "description": "The Header Object follows the structure of the Parameter Object with the following changes:  1. `name` MUST NOT be specified, it is given in the corresponding `headers` map. 1. `in` MUST NOT be specified, it is implicitly in `header`. 1. All traits that are affected by the location MUST be applicable to a location of `header` (for example, `style`).",
+      "description": "Describes a single header for HTTP responses and for individual parts in `multipart` representations.  The Header Object follows the structure of the Parameter Object, including determining its serialization strategy based on whether `schema` or `content` is present, with the following changes:  1. `name` MUST NOT be specified, it is given in the corresponding `headers` map. 1. `in` MUST NOT be specified, it is implicitly in `header`. 1. All traits that are affected by the location MUST be applicable to a location of `header` (for example, `style`). This means that `allowEmptyValue` and `allowReserved` MUST NOT be used, and `style`, if used, MUST be limited to `\"simple\"`.",
       "type": "object",
       "properties": {
         "description": {
@@ -157,6 +161,7 @@
       }
     },
     "Headers": {
+      "description": "A map of Header Objects, the key is the name of the header.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Header"
@@ -205,7 +210,7 @@
       }
     },
     "Link": {
-      "description": "The `Link object` represents a possible design-time link for a response. The presence of a link does not guarantee the caller's ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.  Unlike _dynamic_ links (i.e. links provided **in** the response payload), the OAS linking mechanism does not require link information in the runtime response.  For computing links, and providing instructions to execute them, a runtime expression is used for accessing values in an operation and using them as parameters while invoking the linked operation.",
+      "description": "The Link Object represents a possible design-time link for a response. The presence of a link does not guarantee the caller's ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.  Unlike _dynamic_ links (i.e. links provided **in** the response payload), the OAS linking mechanism does not require link information in the runtime response.  For computing links and providing instructions to execute them, a runtime expression is used for accessing values in an operation and using them as parameters while invoking the linked operation.",
       "type": "object",
       "properties": {
         "operationRef": {
@@ -223,13 +228,14 @@
       }
     },
     "Links": {
+      "description": "A map of Link Objects, the key is a short name for the link.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Link"
       }
     },
     "MediaType": {
-      "description": "Each Media Type Object provides schema and examples for the media type identified by its key.",
+      "description": "Each Media Type Object provides schema and examples for the media type identified by its key.  When `example` or `examples` are provided, the example SHOULD match the specified schema and be in the correct format as specified by the media type and its encoding. The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL override any `example` in the schema.",
       "type": "object",
       "properties": {
         "schema": {
@@ -247,12 +253,14 @@
       }
     },
     "MediaTypes": {
+      "description": "A map containing descriptions of potential payloads. The key is a media type or media type range and the value describes it.",
       "type": "object",
       "additionalProperties": {
         "$ref": "MediaType"
       }
     },
     "OAuthFlow": {
+      "description": "Configuration details for a supported OAuth Flow.",
       "type": "object",
       "properties": {
         "authorizationUrl": {
@@ -270,6 +278,7 @@
       }
     },
     "OAuthFlows": {
+      "description": "Allows configuration of the supported OAuth Flows.",
       "type": "object",
       "properties": {
         "implicit": {
@@ -287,7 +296,7 @@
       }
     },
     "OpenAPI": {
-      "description": "This is the root object of the OpenAPI document.",
+      "description": "This is the root object of the OpenAPI Description.",
       "type": "object",
       "properties": {
         "openapi": {
@@ -387,6 +396,7 @@
       }
     },
     "Parameters": {
+      "description": "An object to hold reusable Parameter Objects.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Parameter"
@@ -438,6 +448,7 @@
       }
     },
     "Examples": {
+      "description": "A map of Example Objects.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Example"
@@ -495,14 +506,14 @@
       }
     },
     "Paths": {
-      "description": "Holds the relative paths to the individual endpoints and their operations. The path is appended to the URL from the Server Object in order to construct the full URL. The Paths MAY be empty, due to Access Control List (ACL) constraints.",
+      "description": "Holds the relative paths to the individual endpoints and their operations. The path is appended to the URL from the Server Object in order to construct the full URL. The Paths Object MAY be empty, due to Access Control List (ACL) constraints.",
       "type": "object",
       "additionalProperties": {
         "$ref": "PathItem"
       }
     },
     "Reference": {
-      "description": "A simple object to allow referencing other components in the specification, internally and externally.  The Reference Object is defined by JSON Reference and follows the same structure, behavior and rules.   For this specification, reference resolution is accomplished as defined by the JSON Reference specification and not by the JSON Schema specification.",
+      "description": "A simple object to allow referencing other components in the OpenAPI Description, internally and externally.  The `$ref` string value contains a URI (RFC3986), which identifies the value being referenced.",
       "type": "object",
       "properties": {
         "$ref": {
@@ -532,13 +543,14 @@
       }
     },
     "RequestBodies": {
+      "description": "An object to hold reusable Request Body Objects.",
       "type": "object",
       "additionalProperties": {
         "$ref": "RequestBody"
       }
     },
     "Response": {
-      "description": "Describes a single response from an API Operation, including design-time, static  `links` to operations based on the response.",
+      "description": "Describes a single response from an API operation, including design-time, static `links` to operations based on the response.",
       "type": "object",
       "properties": {
         "description": {
@@ -559,14 +571,14 @@
       }
     },
     "Responses": {
-      "description": "A container for the expected responses of an operation. The container maps a HTTP response code to the expected response.  The documentation is not necessarily expected to cover all possible HTTP response codes because they may not be known in advance. However, documentation is expected to cover a successful operation response and any known errors.  The `default` MAY be used as a default response object for all HTTP codes  that are not covered individually by the specification.  The `Responses Object` MUST contain at least one response code, and it  SHOULD be the response for a successful operation call.",
+      "description": "A container for the expected responses of an operation. The container maps a HTTP response code to the expected response.  The documentation is not necessarily expected to cover all possible HTTP response codes because they may not be known in advance. However, documentation is expected to cover a successful operation response and any known errors.  The `default` MAY be used as a default Response Object for all HTTP codes that are not covered individually by the Responses Object.  The Responses Object MUST contain at least one response code, and if only one response code is provided it SHOULD be the response for a successful operation call.",
       "type": "object",
       "additionalProperties": {
         "$ref": "Response"
       }
     },
     "SecurityRequirement": {
-      "description": "Lists the required security schemes to execute this operation. The name used for each property MUST correspond to a security scheme declared in the Security Schemes under the Components Object.  Security Requirement Objects that contain multiple schemes require that all schemes MUST be satisfied for a request to be authorized. This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.  When a list of Security Requirement Objects is defined on the Open API object or Operation Object, only one of Security Requirement Objects in the list needs to be satisfied to authorize the request.",
+      "description": "Lists the required security schemes to execute this operation. The name used for each property MUST correspond to a security scheme declared in the Security Schemes under the Components Object.  A Security Requirement Object MAY refer to multiple security schemes in which case all schemes MUST be satisfied for a request to be authorized. This enables support for scenarios where multiple query parameters or HTTP headers are required to convey security information.  When the `security` field is defined on the OpenAPI Object or Operation Object and contains multiple Security Requirement Objects, only one of the entries in the list needs to be satisfied to authorize the request. This enables support for scenarios where the API allows multiple, independent security schemes.  An empty Security Requirement Object (`{}`) indicates anonymous access is supported.",
       "type": "object",
       "additionalProperties": {
         "type": "array",
@@ -576,6 +588,7 @@
       }
     },
     "SecuritySchemes": {
+      "description": "An object to hold reusable Security Scheme Objects.",
       "type": "object",
       "additionalProperties": {
         "$ref": "SecurityScheme"
@@ -615,24 +628,28 @@
       }
     },
     "ServerVariables": {
+      "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
       "type": "object",
       "additionalProperties": {
         "$ref": "ServerVariable"
       }
     },
     "Schemas": {
+      "description": "An object to hold reusable Schema Objects.",
       "type": "object",
       "additionalProperties": {
         "type": "any"
       }
     },
     "Scopes": {
+      "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it.",
       "type": "object",
       "additionalProperties": {
         "type": "string"
       }
     },
     "SecurityScheme": {
+      "description": "Defines a security scheme that can be used by the operations.  Supported schemes are HTTP authentication, an API key (either as a header, a cookie parameter or as a query parameter), mutual TLS (use of a client certificate), OAuth2's common flows (implicit, password, client credentials and authorization code) as defined in RFC6749, and OpenID Connect Discovery.",
       "type": "object",
       "properties": {
         "type": {
