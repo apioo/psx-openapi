@@ -121,10 +121,7 @@
         "url": {
           "type": "string"
         }
-      },
-      "required": [
-        "url"
-      ]
+      }
     },
     "Header": {
       "description": "The Header Object follows the structure of the Parameter Object with the following changes:  1. `name` MUST NOT be specified, it is given in the corresponding `headers` map. 1. `in` MUST NOT be specified, it is implicitly in `header`. 1. All traits that are affected by the location MUST be applicable to a location of `header` (for example, `style`).",
@@ -139,16 +136,10 @@
         "deprecated": {
           "type": "boolean"
         },
-        "allowEmptyValue": {
-          "type": "boolean"
-        },
         "style": {
           "type": "string"
         },
         "explode": {
-          "type": "boolean"
-        },
-        "allowReserved": {
           "type": "boolean"
         },
         "schema": {
@@ -196,11 +187,7 @@
         "version": {
           "type": "string"
         }
-      },
-      "required": [
-        "title",
-        "version"
-      ]
+      }
     },
     "License": {
       "description": "License information for the exposed API.",
@@ -215,10 +202,7 @@
         "url": {
           "type": "string"
         }
-      },
-      "required": [
-        "name"
-      ]
+      }
     },
     "Link": {
       "description": "The `Link object` represents a possible design-time link for a response. The presence of a link does not guarantee the caller's ability to successfully invoke it, rather it provides a known relationship and traversal mechanism between responses and other operations.  Unlike _dynamic_ links (i.e. links provided **in** the response payload), the OAS linking mechanism does not require link information in the runtime response.  For computing links, and providing instructions to execute them, a runtime expression is used for accessing values in an operation and using them as parameters while invoking the linked operation.",
@@ -307,7 +291,7 @@
       "type": "object",
       "properties": {
         "openapi": {
-          "default": "3.0.3",
+          "default": "3.1.2",
           "type": "string"
         },
         "info": {
@@ -346,12 +330,7 @@
         "externalDocs": {
           "$ref": "ExternalDocs"
         }
-      },
-      "required": [
-        "openapi",
-        "info",
-        "paths"
-      ]
+      }
     },
     "Operation": {
       "description": "Describes a single API operation on a path.",
@@ -405,10 +384,7 @@
             "$ref": "Server"
           }
         }
-      },
-      "required": [
-        "responses"
-      ]
+      }
     },
     "Parameters": {
       "type": "object",
@@ -459,11 +435,7 @@
         "content": {
           "$ref": "MediaTypes"
         }
-      },
-      "required": [
-        "name",
-        "in"
-      ]
+      }
     },
     "Examples": {
       "type": "object",
@@ -535,11 +507,14 @@
       "properties": {
         "$ref": {
           "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
         }
-      },
-      "required": [
-        "$ref"
-      ]
+      }
     },
     "RequestBody": {
       "description": "Describes a single request body.",
@@ -554,10 +529,7 @@
         "required": {
           "type": "boolean"
         }
-      },
-      "required": [
-        "content"
-      ]
+      }
     },
     "RequestBodies": {
       "type": "object",
@@ -579,12 +551,12 @@
           "$ref": "MediaTypes"
         },
         "links": {
-          "$ref": "Link"
+          "type": "map",
+          "schema": {
+            "$ref": "Link"
+          }
         }
-      },
-      "required": [
-        "description"
-      ]
+      }
     },
     "Responses": {
       "description": "A container for the expected responses of an operation. The container maps a HTTP response code to the expected response.  The documentation is not necessarily expected to cover all possible HTTP response codes because they may not be known in advance. However, documentation is expected to cover a successful operation response and any known errors.  The `default` MAY be used as a default response object for all HTTP codes  that are not covered individually by the specification.  The `Responses Object` MUST contain at least one response code, and it  SHOULD be the response for a successful operation call.",
@@ -622,10 +594,7 @@
         "variables": {
           "$ref": "ServerVariables"
         }
-      },
-      "required": [
-        "url"
-      ]
+      }
     },
     "ServerVariable": {
       "description": "An object representing a Server Variable for server URL template substitution.",
@@ -643,10 +612,7 @@
         "description": {
           "type": "string"
         }
-      },
-      "required": [
-        "default"
-      ]
+      }
     },
     "ServerVariables": {
       "type": "object",
@@ -708,10 +674,7 @@
         "externalDocs": {
           "$ref": "ExternalDocs"
         }
-      },
-      "required": [
-        "name"
-      ]
+      }
     }
   },
   "$ref": "OpenAPI"
