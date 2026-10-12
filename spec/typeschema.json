@@ -563,10 +563,7 @@
           "$ref": "MediaTypes"
         },
         "links": {
-          "type": "map",
-          "schema": {
-            "$ref": "Link"
-          }
+          "$ref": "Links"
         }
       }
     },

@@ -12,10 +12,7 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     protected ?string $description = null;
     protected ?Headers $headers = null;
     protected ?MediaTypes $content = null;
-    /**
-     * @var \PSX\Record\Record<Link>|null
-     */
-    protected ?\PSX\Record\Record $links = null;
+    protected ?Links $links = null;
     public function setDescription(?string $description): void
     {
         $this->description = $description;
@@ -40,17 +37,11 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->content;
     }
-    /**
-     * @param \PSX\Record\Record<Link>|null $links
-     */
-    public function setLinks(?\PSX\Record\Record $links): void
+    public function setLinks(?Links $links): void
     {
         $this->links = $links;
     }
-    /**
-     * @return \PSX\Record\Record<Link>|null
-     */
-    public function getLinks(): ?\PSX\Record\Record
+    public function getLinks(): ?Links
     {
         return $this->links;
     }
