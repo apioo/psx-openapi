@@ -6,10 +6,10 @@ namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('This is the root object of the OpenAPI document.')]
+#[Description('This is the root object of the OpenAPI Description.')]
 class OpenAPI implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
-    protected ?string $openapi = '3.0.3';
+    protected ?string $openapi = '3.1.2';
     protected ?Info $info = null;
     protected ?string $jsonSchemaDialect = null;
     /**
@@ -126,6 +126,9 @@ class OpenAPI implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->externalDocs;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

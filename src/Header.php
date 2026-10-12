@@ -6,16 +6,14 @@ namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('The Header Object follows the structure of the Parameter Object with the following changes:  1. `name` MUST NOT be specified, it is given in the corresponding `headers` map. 1. `in` MUST NOT be specified, it is implicitly in `header`. 1. All traits that are affected by the location MUST be applicable to a location of `header` (for example, `style`).')]
+#[Description('Describes a single header for HTTP responses and for individual parts in `multipart` representations.  The Header Object follows the structure of the Parameter Object, including determining its serialization strategy based on whether `schema` or `content` is present, with the following changes:  1. `name` MUST NOT be specified, it is given in the corresponding `headers` map. 1. `in` MUST NOT be specified, it is implicitly in `header`. 1. All traits that are affected by the location MUST be applicable to a location of `header` (for example, `style`). This means that `allowEmptyValue` and `allowReserved` MUST NOT be used, and `style`, if used, MUST be limited to `"simple"`.')]
 class Header implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $description = null;
     protected ?bool $required = null;
     protected ?bool $deprecated = null;
-    protected ?bool $allowEmptyValue = null;
     protected ?string $style = null;
     protected ?bool $explode = null;
-    protected ?bool $allowReserved = null;
     protected mixed $schema = null;
     protected mixed $example = null;
     protected ?Examples $examples = null;
@@ -44,14 +42,6 @@ class Header implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->deprecated;
     }
-    public function setAllowEmptyValue(?bool $allowEmptyValue): void
-    {
-        $this->allowEmptyValue = $allowEmptyValue;
-    }
-    public function getAllowEmptyValue(): ?bool
-    {
-        return $this->allowEmptyValue;
-    }
     public function setStyle(?string $style): void
     {
         $this->style = $style;
@@ -67,14 +57,6 @@ class Header implements \JsonSerializable, \PSX\Record\RecordableInterface
     public function getExplode(): ?bool
     {
         return $this->explode;
-    }
-    public function setAllowReserved(?bool $allowReserved): void
-    {
-        $this->allowReserved = $allowReserved;
-    }
-    public function getAllowReserved(): ?bool
-    {
-        return $this->allowReserved;
     }
     public function setSchema(mixed $schema): void
     {
@@ -108,6 +90,9 @@ class Header implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->content;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
@@ -115,10 +100,8 @@ class Header implements \JsonSerializable, \PSX\Record\RecordableInterface
         $record->put('description', $this->description);
         $record->put('required', $this->required);
         $record->put('deprecated', $this->deprecated);
-        $record->put('allowEmptyValue', $this->allowEmptyValue);
         $record->put('style', $this->style);
         $record->put('explode', $this->explode);
-        $record->put('allowReserved', $this->allowReserved);
         $record->put('schema', $this->schema);
         $record->put('example', $this->example);
         $record->put('examples', $this->examples);

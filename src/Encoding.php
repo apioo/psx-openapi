@@ -6,7 +6,7 @@ namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('A single encoding definition applied to a single schema property.')]
+#[Description('A single encoding definition applied to a single schema property.  Properties are correlated with `multipart` parts using the `name` parameter of `Content-Disposition: form-data`, and with `application/x-www-form-urlencoded` using the query string parameter names. In both cases, their order is implementation-defined.')]
 class Encoding implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $contentType = null;
@@ -54,6 +54,9 @@ class Encoding implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->allowReserved;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

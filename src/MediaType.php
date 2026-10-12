@@ -6,7 +6,7 @@ namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('Each Media Type Object provides schema and examples for the media type identified by its key.')]
+#[Description('Each Media Type Object provides schema and examples for the media type identified by its key.  When `example` or `examples` are provided, the example SHOULD match the specified schema and be in the correct format as specified by the media type and its encoding. The `example` and `examples` fields are mutually exclusive, and if either is present it SHALL override any `example` in the schema.')]
 class MediaType implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected mixed $schema = null;
@@ -45,6 +45,9 @@ class MediaType implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->encoding;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace PSX\OpenAPI;
 
+use PSX\Schema\Attribute\Description;
 
+#[Description('Allows configuration of the supported OAuth Flows.')]
 class OAuthFlows implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?OAuthFlow $implicit = null;
@@ -43,6 +45,9 @@ class OAuthFlows implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->authorizationCode;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

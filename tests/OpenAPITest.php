@@ -21,6 +21,7 @@
 namespace PSX\OpenAPI\Tests;
 
 use PHPUnit\Framework\TestCase;
+use PSX\Json\Parser;
 use PSX\OpenAPI\Components;
 use PSX\OpenAPI\Contact;
 use PSX\OpenAPI\Header;
@@ -231,13 +232,13 @@ class OpenAPITest extends TestCase
         $openAPI->setComponents($components);
         $openAPI->setTags($tags);
 
-        $actual = json_encode($openAPI, JSON_PRETTY_PRINT);
-        $expect = file_get_contents(__DIR__ . '/resources/openapi.json');
+        $actual = Parser::encode($openAPI, JSON_PRETTY_PRINT);
+        $expect = (string) file_get_contents(__DIR__ . '/resources/openapi.json');
 
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
 
         // assert with yaml
-        $expect = json_encode(Yaml::parse(file_get_contents(__DIR__ . '/resources/petstore.yaml')));
+        $expect = Parser::encode(Yaml::parse((string) file_get_contents(__DIR__ . '/resources/petstore.yaml')));
 
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
@@ -304,8 +305,8 @@ class OpenAPITest extends TestCase
         $openAPI->setPaths($paths);
         $openAPI->setComponents($components);
 
-        $actual = json_encode($openAPI, JSON_PRETTY_PRINT);
-        $expect = file_get_contents(__DIR__ . '/resources/openapi_simple.json');
+        $actual = Parser::encode($openAPI, JSON_PRETTY_PRINT);
+        $expect = (string) file_get_contents(__DIR__ . '/resources/openapi_simple.json');
 
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
@@ -353,8 +354,8 @@ class OpenAPITest extends TestCase
         $openAPI->setPaths($paths);
         $openAPI->setComponents($components);
 
-        $actual = json_encode($openAPI, JSON_PRETTY_PRINT);
-        $expect = file_get_contents(__DIR__ . '/resources/openapi_security.json');
+        $actual = Parser::encode($openAPI, JSON_PRETTY_PRINT);
+        $expect = (string) file_get_contents(__DIR__ . '/resources/openapi_security.json');
 
         $this->assertJsonStringEqualsJsonString($expect, $actual, $actual);
     }
@@ -363,9 +364,9 @@ class OpenAPITest extends TestCase
     {
         $mapper = new ObjectMapper(new SchemaManager());
 
-        $openAPI = $mapper->readJson(file_get_contents(__DIR__ . '/resources/openapi.json'), SchemaSource::fromClass(OpenAPI::class));
+        $openAPI = $mapper->readJson((string) file_get_contents(__DIR__ . '/resources/openapi.json'), SchemaSource::fromClass(OpenAPI::class));
 
         $this->assertInstanceOf(OpenAPI::class, $openAPI);
-        $this->assertEquals('List all pets', $openAPI->getPaths()->get('/pets')->getGet()->getSummary());
+        $this->assertEquals('List all pets', $openAPI->getPaths()?->get('/pets')?->getGet()?->getSummary());
     }
 }

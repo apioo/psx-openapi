@@ -6,7 +6,7 @@ namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('Holds a set of reusable objects for different aspects of the OAS. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.')]
+#[Description('Holds a set of reusable objects for different aspects of the OAS. All objects defined within the Components Object will have no effect on the API unless they are explicitly referenced from outside the Components Object.')]
 class Components implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?Schemas $schemas = null;
@@ -90,6 +90,9 @@ class Components implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->callbacks;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

@@ -45,6 +45,9 @@ class ServerVariable implements \JsonSerializable, \PSX\Record\RecordableInterfa
     {
         return $this->description;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

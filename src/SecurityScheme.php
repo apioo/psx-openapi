@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace PSX\OpenAPI;
 
+use PSX\Schema\Attribute\Description;
 
+#[Description('Defines a security scheme that can be used by the operations.  Supported schemes are HTTP authentication, an API key (either as a header, a cookie parameter or as a query parameter), mutual TLS (use of a client certificate), OAuth2\'s common flows (implicit, password, client credentials and authorization code) as defined in RFC6749, and OpenID Connect Discovery.')]
 class SecurityScheme implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $type = null;
@@ -79,6 +81,9 @@ class SecurityScheme implements \JsonSerializable, \PSX\Record\RecordableInterfa
     {
         return $this->openIdConnectUrl;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */

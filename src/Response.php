@@ -6,13 +6,16 @@ namespace PSX\OpenAPI;
 
 use PSX\Schema\Attribute\Description;
 
-#[Description('Describes a single response from an API Operation, including design-time, static  `links` to operations based on the response.')]
+#[Description('Describes a single response from an API operation, including design-time, static `links` to operations based on the response.')]
 class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
 {
     protected ?string $description = null;
     protected ?Headers $headers = null;
     protected ?MediaTypes $content = null;
-    protected ?Link $links = null;
+    /**
+     * @var \PSX\Record\Record<Link>|null
+     */
+    protected ?\PSX\Record\Record $links = null;
     public function setDescription(?string $description): void
     {
         $this->description = $description;
@@ -37,14 +40,23 @@ class Response implements \JsonSerializable, \PSX\Record\RecordableInterface
     {
         return $this->content;
     }
-    public function setLinks(?Link $links): void
+    /**
+     * @param \PSX\Record\Record<Link>|null $links
+     */
+    public function setLinks(?\PSX\Record\Record $links): void
     {
         $this->links = $links;
     }
-    public function getLinks(): ?Link
+    /**
+     * @return \PSX\Record\Record<Link>|null
+     */
+    public function getLinks(): ?\PSX\Record\Record
     {
         return $this->links;
     }
+    /**
+     * @return \PSX\Record\RecordInterface<mixed>
+     */
     public function toRecord(): \PSX\Record\RecordInterface
     {
         /** @var \PSX\Record\Record<mixed> $record */
